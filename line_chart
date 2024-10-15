@@ -1,0 +1,61 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/Yunkai030/FIT3179_Studio10_Homework/refs/heads/main/GlobalWeatherRepository_modified.csv"
+  },
+  "vconcat": [
+    {
+      "width": 600,
+      "height": 400,
+      "mark": {
+        "type": "line",
+        "strokeWidth": 3,
+        "color": "steelblue",
+        "point": true,
+        "interpolate": "monotone"
+      },
+      "encoding": {
+        "x": {
+          "field": "last_updated",
+          "type": "temporal",
+          "scale": {"domain": {"param": "brush"}},
+          "axis": {"title": "", "tickCount": 10}
+        },
+        "y": {"field": "temperature_celsius", "type": "quantitative"},
+        "tooltip": [
+          {"field": "last_updated", "type": "temporal", "title": "Last Updated"},
+          {"field": "temperature_celsius", "type": "quantitative", "title": "Temperature (°C)"}
+        ]
+      }
+    },
+    {
+      "width": 600,
+      "height": 100,
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2,
+        "color": "orange",
+        "interpolate": "monotone"
+      },
+      "params": [
+        {"name": "brush", "select": {"type": "interval", "encodings": ["x"]}}
+      ],
+      "encoding": {
+        "x": {
+          "field": "last_updated",
+          "type": "temporal",
+          "axis": {"tickCount": 10}
+        },
+        "y": {
+          "field": "temperature_celsius",
+          "type": "quantitative",
+          "axis": {"tickCount": 3, "grid": false}
+        },
+        "tooltip": [
+          {"field": "last_updated", "type": "temporal", "title": "Last Updated"},
+          {"field": "temperature_celsius", "type": "quantitative", "title": "Temperature (°C)"}
+        ]
+      }
+    }
+  ]
+}

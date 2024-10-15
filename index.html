@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.4.0"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.0"></script> 
+
+    <link rel="stylesheet" href="style.css" />
+
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Temperature Australia</title>
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+  
+</head>
+
+
+<body class="wrapper">
+    
+    <img src="Images/background3.png">
+     
+    <section class="chart-section">
+    <div class="side-grid">
+        <p class="paragraph">
+        The whole visualization provides an insightful analysis for Australia's temperature and offers a look at a global scope through the global map over recent years. Australia, known for its extreme weather patterns, showcases significant variability in both maximum and minimum temperatures, influenced by its vast geographical diversity. 
+        The visualization highlights how these fluctuations in temperature, particularly during the summer months, reflect larger global temperature trends, which have seen a steady rise due to climate change. 
+        By comparing Australia's localized temperature data with global patterns, the visual representation offers a clear picture of how broader environmental shifts are impacting both local and worldwide climates, emphasizing the growing importance of climate monitoring and data-driven decisions.
+
+        
+        </p>
+        <div id="vis2" class="chart-container"></div>
+    </div>
+    </section>
+
+    <section class="chart-section">
+      <h2>Global Temperature Map</h2>
+      <p>
+        Compare to all the other countries, Australia seems isn't that hot, a 13 degrees celsius isn't that bad compare to the 49.2 degrees celsius like Kuwait.
+        The map highlights temperature variations with color coding, ranging from cooler temperatures in blue to extremely high temperatures in orange and red. As Kuwait stands out as the hottest country in this dataset.
+        The distribution of high-temperature locations globally emphasizes regions near the equator and arid areas, such as parts of the Middle East and Africa, where temperatures frequently exceed 35°C. This visualization shows that a global heat patterns and the geographical impact of climate extremes.
+      </p>
+      <p>By selecting the TimeZone below, different regions can be selected and as a great tool for comparasion.</p>
+      <div id="vis1" class="chart-container"></div>
+    </section>
+
+    <section class="chart-section">
+      <h2>Rainfall & Temperature</h2>
+      <p>
+        From the scatter plot, it presents the relationship between Rainfall (mm) and Maximum Temperature (°C), offering an look at how precipitation levels impact temperature. The dense concentration of points along the left side of the plot, where rainfall is lower, suggests that most of the recorded data shows relatively low rainfall combined with a wide range of temperatures, spanning from near freezing to over 40°C. Interestingly, as rainfall increases, the data points spread out, with fewer observations at high rainfall levels.
+    </p>
+    <p>
+        The graph also reveals that the highest temperatures tend to occur when rainfall is minimal, highlighting a common phenomenon: extremely hot days are often associated with dry conditions. On the other hand, moderate to heavy rainfall correlates with cooler maximum temperatures, which is consistent with how cloud cover and precipitation usually cool the air.
+        </p>
+      <div
+        id="vis5"
+        class="chart-container"
+        style="width: 96%"
+      ></div>
+    </section>
+
+    <section class="chart-section">
+      <h2>Min & Max Temperature / Distribution over time</h2>
+      <p>
+        Australia’s climate tells a story of extremes, with its temperature patterns showcasing the nation’s vast and varied landscape. As the year progresses, we see the scorching summer days push maximum temperatures beyond 30°C, painting a picture of long, hot stretches typical of Australia’s summer. 
+        But as the months roll into winter, the narrative shifts dramatically—minimum temperatures plunge, sometimes below freezing, offering a stark contrast to the summer heat. 
+      </p>
+      <div class="side-grid">
+        <div class="chart-subsection">
+          <h3>Min & Max Temperature</h3>
+          <p>
+            In the first graph, the seasonal patterns of maximum and minimum temperatures over time reveal Australia’s climate extremes. 
+            The graph also highlights how minimum temperatures regularly approach freezing during winter, contrasting sharply with the scorching summers. This consistent variation underscores the diverse and challenging weather conditions across Australia.
+          </p>
+          <div
+            id="vis3"
+            class="chart-container"
+            style="width: 100%"
+          ></div>
+        </div>
+        <div class="chart-subsection">
+          <h3>Distribution over time</h3>
+          <p>
+            The second graph zooms in on daily fluctuations, capturing sharp spikes and drops in temperature. Over a short period, temperatures swing dramatically, exceeding 35°C before quickly cooling down.
+
+            These rapid changes show Australia’s unpredictable weather, where daily conditions can vary widely. The bottom graph can be used as a filter to look up for specific time period.
+          </p>
+          <div
+            id="vis4"
+            class="chart-container"
+            style="width: 100%"
+          ></div>
+        </div>
+      </div>
+    </section>
+    
+
+    <script type="text/javascript">
+        var dotMap = "dot_map";
+        var lineChart = "line_chart";
+        var minMax = "min_vs_max";
+        var pieChart = "pie_chart";
+        var rainTemp = "rain_vs_temp";
+
+        vegaEmbed('#vis1', dotMap, { "actions": false });
+        vegaEmbed('#vis2', pieChart, { "actions": false });
+        vegaEmbed('#vis3', minMax, { "actions": false });
+        vegaEmbed('#vis4', lineChart, { "actions": false });
+        vegaEmbed('#vis5', rainTemp, { "actions": false });
+    </script>
+
+<div class="footer">
+    <p><sub>Yunkai Huang 32444311 <br>
+            Data sourced from Kaggle and edited:(also with data from data.vic.gov.au)
+            https://www.kaggle.com/datasets/arisdarmawan/australian-weather-dataset
+            https://www.kaggle.com/datasets/nelgiriyewithana/global-weather-repository
+        </sub></p>
+</div>  
+  </body>
+</html>

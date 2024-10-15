@@ -1,0 +1,134 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+      "url": "https://raw.githubusercontent.com/Yunkai030/FIT3179_Assignment_2/refs/heads/main/Data/Updated_GlobalWeatherRepository.csv"
+    },
+    "params": [
+      {
+        "name": "timeZoneParam",
+        "value": "All",
+        "bind": {
+          "input": "select",
+          "options": [
+            "All",
+            "Indian",
+            "Africa",
+            "Europe",
+            "Asia",
+            "America",
+            "Pacific",
+            "Atlantic",
+            "Australia"
+          ],
+          "labels": [
+            "All",
+            "Indian",
+            "Africa",
+            "Europe",
+            "Asia",
+            "America",
+            "Pacific",
+            "Atlantic",
+            "Australia"
+          ],
+          "name": "Time Zone:"
+        }
+      }
+    ],
+    "concat": [
+      {
+        "width": 1150,
+        "height": 600,
+        "title": "Top High Temperature Countries in the World",
+        "projection": {"type": "equalEarth", "rotate": [-150, 0, 0]},
+        "layer": [
+          {
+            "data": {
+              "url": "https://raw.githubusercontent.com/Yunkai030/FIT3179_Studio10_Homework/refs/heads/main/ne_110m_admin_0_countries.json",
+              "format": {
+                "type": "topojson",
+                "feature": "ne_110m_admin_0_countries"
+              }
+            },
+            "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"}
+          },
+          {
+            "data": {
+              "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/7_others/oceans.topojson",
+              "format": {"type": "topojson", "feature": "oceans"}
+            },
+            "mark": {"type": "geoshape", "fill": "skyblue"}
+          },
+          {
+            "data": {
+              "url": "https://raw.githubusercontent.com/Yunkai030/FIT3179_Studio10_Homework/refs/heads/main/ne_110m_graticules_30.json",
+              "format": {"type": "topojson", "feature": "ne_110m_graticules_30"}
+            },
+            "mark": {"type": "geoshape", "fill": null, "stroke": "lightgray"}
+          },
+          {
+            "transform": [
+              {"filter": "datum.temperature_celsius >= 10"},
+                 
+              {
+                "filter": "timeZoneParam == 'All' || datum.timezone == timeZoneParam"
+              }
+            ],
+            "encoding": {
+              "longitude": {"field": "longitude", "type": "quantitative"},
+              "latitude": {"field": "latitude", "type": "quantitative"},
+              "color": {
+                "field": "temperature_celsius",
+                "type": "quantitative",
+                "title": "Temperature (°C)",
+                "scale": {
+                  "type": "threshold",
+                  "domain": [10, 15, 20, 25, 30, 35],
+                  "range":["#bdd7e7", "#6baed6", "#3182bd", "#fdae6b", "#fd8d3c", "#e6550d", "#a63603"]
+                }
+              },
+              "tooltip": [
+                {"field": "timezone", "type": "nominal", "title": "Time Zone"},
+                {"field": "country", "type": "nominal", "title": "Country"},
+                {"field": "location_name", "type": "nominal", "title": "Location"},
+                {"field": "temperature_celsius", "type": "nominal", "title": "Temperature"}
+              ]
+            },
+            "layer": [
+              {"mark": {"type": "circle", "opacity": 0.4, "size": 25}},
+              {
+                "transform": [
+                  {
+                    "window": [{"op": "rank", "as": "ranking"}],
+                    "sort": [
+                      {"field": "temperature_celsius", "order": "descending"}
+                    ]
+                  },
+                  {"filter": "datum.ranking == 1"},
+                  {
+                    "calculate": "'The hottest country: '+ datum['country']",
+                    "as": "text_annotation_raw"
+                  },
+                  {
+                    "calculate": "split(datum.text_annotation_raw, ';')",
+                    "as": "text_annotation"
+                  }
+                ],
+                "mark": {
+                  "type": "text",
+                  "align": "right",
+                  "dx": 0,
+                  "dy": 8,
+                  "baseline": "middle",
+                  "fontStyle": "italic"
+                },
+                "encoding": {"text": {"field": "text_annotation"}}
+              }
+            ]
+          }
+        ]
+      }
+      
+    ],
+    "config": {"title": {"font": "sans-serif", "fontSize": 20}}
+  }

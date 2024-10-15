@@ -1,0 +1,44 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "values": [
+      {"WeatherType": "Sunny", "Count": 75625},
+      {"WeatherType": "Rainy", "Count": 15060}
+    ]
+  },
+  "width": "container",
+  "height": "container",
+  "transform": [
+    {
+      "calculate": "datum.Count / (75625 + 15060) * 100", 
+      "as": "Percentage"
+    }
+  ],
+  "mark": {
+    "type": "arc",
+    "innerRadius": 50
+  },
+  "encoding": {
+    "theta": {
+      "field": "Count",
+      "type": "quantitative"
+    },
+    "color": {
+      "field": "WeatherType",
+      "type": "nominal",
+      "title": "Weather Type"
+    },
+    "tooltip": [
+      {"field": "WeatherType", "type": "nominal", "title": "Weather Type"},
+      {"field": "Count", "type": "quantitative", "title": "Count of Days"},
+      {"field": "Percentage", "type": "quantitative", "format": ".1f", "title": "Percentage"}
+    ],
+    "text": {
+      "field": "Percentage",
+      "type": "quantitative",
+      "format": ".1f",
+      "title": "Percentage"
+    }
+  },
+  "title": "Sunny vs Rainy Days in Australia"
+}

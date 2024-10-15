@@ -1,0 +1,53 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/Yunkai030/FIT3179_Assignment_2/refs/heads/main/Data/weatherAUS.csv" 
+  },
+  "width": "container",
+  "height": 500,
+  "transform": [
+    {
+      "fold": ["MinTemp", "MaxTemp"],
+      "as": ["TemperatureType", "Temperature"]
+    },
+    {
+      "filter": "datum.TemperatureType == tempSelect"
+    }
+  ],
+  "mark": "line",
+  "encoding": {
+    "x": {
+      "field": "Date",
+      "type": "temporal",
+      "title": "Date"
+    },
+    "y": {
+      "field": "Temperature",
+      "type": "quantitative",
+      "title": "Temperature (°C)"
+    },
+    "color": {
+      "field": "TemperatureType",
+      "type": "nominal",
+      "scale": {
+        "domain": ["MinTemp", "MaxTemp"],
+        "range": ["lightblue", "red"]
+      },
+      "legend": null
+    },
+    "tooltip": [ {"field": "Temperature"}]
+  },
+  "title": "Comparison of Max and Min Temperatures Over Time",
+  "params": [
+    {
+      "name": "tempSelect",
+      "value": "MinTemp",  
+      "bind": {
+        "input": "select",
+        "options": ["MinTemp", "MaxTemp"],
+        "labels": ["Min Temperature", "Max Temperature"],
+        "name": "Select Temperature: "
+      }
+    }
+  ]
+}
