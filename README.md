@@ -1,4 +1,4 @@
-#Monash University FIT3179 Assignment 2
+### Monash University FIT3179 Assignment 2
 
 # 📊 FIT3179 Assignment 2 – Interactive Data Storytelling
 
