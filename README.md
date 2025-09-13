@@ -1,6 +1,6 @@
 # 📊 FIT3179 Assignment 2 – Interactive Data Storytelling
 
-Live Project: [https://yunkai030.github.io/FIT3179_Assignment_2/](https://yunkai030.github.io/FIT3179_Assignment_2/)
+Live Project: [https://yunkai030.github.io/FIT3179_Assignment_2/]([https://yunkai030.github.io/FIT3179_Assignment_2/](https://yunkai030.github.io/FIT3179-Assignment-2-Interactive-Data-Storytelling/))
 
 ## 🧠 Overview
 
